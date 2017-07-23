@@ -1,0 +1,53 @@
+<?php
+
+#error_reporting(E_ALL);
+#include_once("functions.php");
+#$messages=array();
+
+$conf_olt = [
+    "OLT-1" => [
+            "host" => "10.0.0.2",
+            "user" => "admin",
+            "pass" => "123456",
+	    "description" => "OLT-1"
+    ],
+    "OLT-2" => [
+            "host" => "10.0.0.3",
+            "user" => "admin",
+            "pass" => "123456",
+	    "description" => "OLT-2"
+    ]
+];
+
+$model_olt = [
+    "P3608" => [
+            "pon_ports" => 8
+    ],
+    "P3612" => [
+            "pon_ports" => 12
+    ],
+    "P3616" => [
+            "pon_ports" => 16
+    ]
+];
+
+$model_onu = [
+    "3024" => [
+           "model" => "P1004"
+    ],
+    "3022" => [
+           "model" => "P1501C"
+    ],
+    "151С" => [
+           "model" => "1501С2"
+    ]
+];
+
+$conf_menu = [
+    "dashboard"      => "Dashboard",
+    "list_onu"       => "List ONU",
+    "report_optical" => "Report optical"
+];
+
+
+?>

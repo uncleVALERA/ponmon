@@ -1,0 +1,64 @@
+td.details-control {
+    background: url('pic/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('pic/details_close.png') no-repeat center center;
+}
+
+.sel_olt {        
+  width: 300px; /* задаю ширину */
+  clear:right; /* обтекание */
+  float: right;
+//  margin: 100px auto;  /* выровняю по центру */
+  overflow: hidden; /* спрячу лишнее */
+//  background-color: #; /* синенький фон */
+}
+
+.menu-1 {
+//  width: 250px; /* задаю ширину */
+  clear:both; /* обтекание */
+  float: left;
+  1margin: 100px auto;  /* выровняю по центру */
+  overflow: hidden; /* спрячу лишнее */
+  background-color: #777777; /* синенький фон */
+}
+
+ul.css-menu-1 li a.selected {
+background: #444444;
+height: 30px;
+}
+
+
+ul.css-menu-1 {
+        margin:0; /*обнуляем отступы*/
+        padding:0; /*обнуляем отступы*/
+        float:left; /*выравниваем список по левому краю*/
+        width:auto;/*задаем ширину авто исходя из типа и содержимого списка*/
+        background-image: url(bg.gif); /*устанавливаем фоновое изображение*/
+        background-repeat:repeat-x; /*повторяем наше изображение по горизонтали*/
+        list-style:none; /*удаляем маркеры списка*/
+        background-color:#4778c3; /*задаем цвет фона под изображение*/
+        font-size:13px; /*задаем размер шрифта*/
+        font-family:Arial, Helvetica, sans-serif; /*устанавливаем шрифт*/
+}
+    
+ul.css-menu-1 li {
+           float:left; /*выравниваем элементы списка по левому краю*/
+           }
+    
+ul.css-menu-1 li a {
+          display:block; /*представляем ссылки меню как блочные элементы*/
+          width:100px; /*задаем размер блока*/
+          height:30px; /*и высоту блока*/
+          text-align:center; /*надпись по центру*/
+          line-height: 2.1em; /*межстрочный интервал*/
+          text-decoration:none; /*убираем подчеркивание у ссылок*/
+          color:#fff; /*цвет текста ссылок - белый*/
+          border-right:#fff solid 1px; /*бордюр правой стороны блока (белая линия в 1px)*/
+}
+    
+ul.css-menu-1 li a:hover {
+                color:#ccc; /*ссылка меняет цвет при наведении указателя*/
+                }
+
