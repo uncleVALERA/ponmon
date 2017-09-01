@@ -5,6 +5,7 @@
 include_once('../config.php');
 require_once '../inc/telnetclass.php';
 
+//Проверяем ajax_req на допустимые символы
 #$_POST = array_map('pg_escape_string', $_POST);
 #$_GET = array_map('pg_escape_string', $_GET);
 if (isset($_GET['ajax_req'])) {
@@ -19,10 +20,11 @@ if (isset($_GET['ajax_req'])) {
 
 if (!preg_match("/^[0-9a-zA-Z_]+$/",$ajax_req)) { echo "Обля! \n"; exit(); }
 
-$preg_epon_all_info = '/((EPON0\/[\d]{1,2}:[\d]{1,2})\s*(([A-Za-z]{3,4})\s*([0-9a-zA-Z]{3,4})){0,1}\s*([a-f0-9]{4}.[a-f0-9]{4}.[a-f0-9]{4})[\w\W]*(deregistered|auto_configured|lost)[\w\W]*(N\/A|power\soff|wire\sdown|unknow))+/iU';
+$preg_epon_all_info = '/((EPON0\/[\d]{1,2}:[\d]{1,2})\s*(([A-Za-z]{3,4})\s*([0-9a-zA-Z]{3,4})){0,1}\s*([a-f0-9]{4}.[a-f0-9]{4}.[a-f0-9]{4})[\w\W]*(deregistered|auto_configured|auto-configured|lost)[\w\W]*(N\/A|power\soff|power-off|wire\sdown|unknow))+/iU';
 $preg_epon_optical_from_onu = '/((EPON0\/[\d]{1,2}:[\d]{1,2})\s*(-\d{1,2}\.\d))+/iU';
 $preg_epon_optical_to_onu = '/(( received power\(DBm\):)\s*(-\d{1,2}\.\d))+/iU';
 
+#exit;
 $tn = new Telnet($conf_olt[$olt]["host"], '23', '60', 'User Access Verification');
 $tn->login($conf_olt[$olt]["user"],$conf_olt[$olt]["pass"]);
 $tn->setPrompt('#');
@@ -37,11 +39,12 @@ switch ($ajax_req) {
       $responce->rows[$i]["iface"]  = $result[2][$i];
       $responce->rows[$i]["model"]  = $result[5][$i];
       $responce->rows[$i]["mac"]    = $result[6][$i];
-      if ($result[7][$i] == "auto_configured" ) {
+      if ( ($result[7][$i] == "auto_configured") || ($result[7][$i] == "auto-configured") ) {
         $responce->rows[$i]["status"] = "<font color=green>online</font>";
       }else{
         $responce->rows[$i]["status"] = "<font color=red>offline</font>";
       }
+//$responce->rows[$i]["status"] = $result[7][$i];
     }
     $responce->page = 1;
     $responce->total = 1;
